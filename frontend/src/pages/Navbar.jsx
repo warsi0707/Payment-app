@@ -10,6 +10,8 @@ export default function Navbar() {
               method: "POST",
               credentials: 'include'
           })
+          const result = await response.json()
+          console.log(result)
           if(response.ok){
               setAuthenticated(false)
              

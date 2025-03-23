@@ -152,9 +152,12 @@ userRouter.get("/bulk", Auth, async (req, res) => {
 
 })
 userRouter.post("/logout", Auth,(req, res)=>{
-    const userid = req.user;
+
     try{
-        res.clearCookie("token")
+        res.clearCookie("token", {
+            sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
+            secure: process.env.NODE_ENV === "Development" ? false : true,
+        })
         return res.json({
             message: "Logout success"
         })
