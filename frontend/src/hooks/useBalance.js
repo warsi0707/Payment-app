@@ -10,7 +10,6 @@ export default function useBalance() {
       credentials: 'include'
     })
     const result = await response.json()
-    console.log(result)
     if(response.ok){
       setBalance(result.balance)
     }else{
