@@ -47,7 +47,8 @@ export default function Signup() {
   return ( 
     <>
     {message && <Message message={message} success={success}/>}
-    <div className='p-5 mx-auto mt-20 text-black bg-white rounded-lg w-96'>
+    <div className='h-full py-10 pb-10 bg-gray-200'>
+    <div className='p-5 mx-auto mt-10 text-black bg-white rounded-lg w-96'>
       <h1 className='mb-2 text-3xl font-bold text-center text-black'>Sign Up</h1>
       <p className='mb-5 text-lg text-center text-gray-500'>Enter your information to create an account</p>
         <Input value={username} onchange={(e)=> setUsername(e.target.value)} label={"Username"} placeholder={"John@12"} type={"text"}/>
@@ -56,6 +57,7 @@ export default function Signup() {
         <Input value={password} onchange={(e)=> setPassword(e.target.value)} label={"Password"} placeholder={"Password"} type={"password"} />
         <Button onclick={HandleSignup} purpose={"Sign Up"}/>
         <BottomWarning purpose={"sign in"} to={"/signin"}/>
+    </div>
     </div>
     </>
   )

@@ -1,8 +1,5 @@
 import { createContext, useEffect, useState } from 'react'
 import { BackendUrl } from '../provider/BackendUrl'
-import { useRecoilState } from 'recoil'
-import {  authenticatedAtom } from '../atoms/Atom'
-
  const AuthContext = createContext()
 
 export function UseAuth({children}) {
@@ -20,7 +17,7 @@ export function UseAuth({children}) {
         }
     }
     useEffect(()=>{
-        GetUser()
+            GetUser()       
     },[])
     return (
         <AuthContext.Provider value={{authenticated, setAuthenticated}}>

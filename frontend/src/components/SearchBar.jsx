@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import Users from './Users'
+import  { useEffect, useState } from 'react'
 import { BackendUrl } from '../provider/BackendUrl'
 
 export default function SearchBar() {

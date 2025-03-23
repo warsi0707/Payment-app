@@ -25,7 +25,6 @@ export default function Signin() {
         })
         const data = await response.json()
         if(response.ok){
-          localStorage.setItem("token", data.token)
           setMessage(data.message)
           setSuccess(true)
           setUsername("")

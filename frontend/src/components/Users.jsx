@@ -27,7 +27,7 @@ export default function Users() {
       {users.map((item)=>(
         <div key={item._id} className="flex flex-col items-center sm:flex-row sm:justify-between ">
         <div className='flex gap-2 mt-5 text-xl'>
-            <p className='items-center px-3 py-1 bg-gray-400 rounded-full'>{item.firstName[0]}</p>
+            <p className='items-center px-3 py-1 bg-gray-400 rounded-full'>{item.firstName[0].toUpperCase()}</p>
             <h1 className='mt-1'>{item.firstName} {item.lastName}</h1>
         </div>
         <div>
