@@ -154,11 +154,6 @@ userRouter.get("/bulk", Auth, async (req, res) => {
 userRouter.post("/logout", Auth,(req, res)=>{
     const userid = req.user;
     try{
-        if(userid == null){
-            return res.json({
-                message: "already loged out"
-            })
-        }
         res.clearCookie("token")
         return res.json({
             message: "Logout success"
