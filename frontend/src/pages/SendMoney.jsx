@@ -1,16 +1,13 @@
-import{ useRef, useState } from 'react'
+import{ useRef } from 'react'
 import { useNavigate, useSearchParams } from "react-router";
 import { BackendUrl } from '../provider/BackendUrl';
 import axios from 'axios'
-import Message from '../components/Message';
-
+import toast from 'react-hot-toast';
 
 export default function SendMoney() {
   const [searchParams] = useSearchParams();
   const name = searchParams.get("name")
   const amountRef = useRef(0)
-  const [message, setMessage] = useState("")
-  const [success, setSuccess] = useState(false)
   const naivgate = useNavigate()
 
   
@@ -27,20 +24,16 @@ export default function SendMoney() {
     })
     const result = await response.data
     if(response){
-      setMessage(result.message)
-      setSuccess(true)
+      toast.success(result.message)
       setTimeout(() => {
-        setMessage("")
         naivgate("/")
       }, 2000);
     }else{
-      setMessage(result.message)
-      setSuccess(false)
+      toast.error(result.message)
     }
   }
   return (
     <>
-   {message && <Message message={message} success={success}/>}
     <div className='p-5 pb-5 mx-auto mt-32 text-black bg-white rounded-md shadow-md max-w-96 h-80'>
       <h1 className='mt-5 text-2xl font-bold text-center'>Send Money</h1>
       <div className='flex gap-5 mt-10'>

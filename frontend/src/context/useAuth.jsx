@@ -1,10 +1,10 @@
-import { createContext, useCallback, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { BackendUrl } from '../provider/BackendUrl'
  const AuthContext = createContext()
 
 export function UseAuth({children}) {
     const [authenticated, setAuthenticated] = useState(false)
-    const GetUser =useCallback(async()=>{
+    const GetUser =async()=>{
         const response = await fetch(`${BackendUrl}/user/auth`,{
             method :"GET",
             credentials: 'include'
@@ -15,7 +15,7 @@ export function UseAuth({children}) {
         }else{
             setAuthenticated(false)
         }
-    },[])
+    }
     useEffect(()=>{
             GetUser()       
     },[])

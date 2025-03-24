@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import AuthContext from '../context/useAuth'
 import { memo, useCallback, useContext } from 'react'
 import { BackendUrl } from '../provider/BackendUrl'
+import toast from 'react-hot-toast'
 
  function Navbar() {
   const {authenticated, setAuthenticated} = useContext(AuthContext)
@@ -12,9 +13,10 @@ import { BackendUrl } from '../provider/BackendUrl'
           })
           if(response.ok){
               setAuthenticated(false)
-             
+             toast.success("Logout")
           }else{
               setAuthenticated(false)
+              toast.error("Logout")
           }
       },[])
  

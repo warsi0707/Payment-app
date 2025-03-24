@@ -1,15 +1,12 @@
 import Input from '../components/Input'
 import Button from '../components/Button'
 import BottomWarning from '../components/BottomWarning'
-import Message from '../components/Message'
 import {BackendUrl} from "../provider/BackendUrl"
 import { memo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
  function Signup() {
-
-  const [message, setMessage ] = useState("")
-  const [success, setSuccess] = useState("")
   const usernameRef = useRef()
   const passwordRef = useState()
   const firstNameRef = useRef()
@@ -31,23 +28,16 @@ import { useNavigate } from 'react-router-dom'
     })
     const data = await response.json()
     if(response.ok){
-      setMessage(data.message)
-      setSuccess(true)
+      toast.success(data.message)
       setTimeout(() => {
-        setMessage("")
         navigate("/signin")
       }, 2000);
     }else{
-      setMessage(data.message)
-      setSuccess(false)
-      setTimeout(() => {
-        setMessage("")
-      }, 2000);
+      toast.error(data.message)
     }
   }
   return ( 
     <>
-    {message && <Message message={message} success={success}/>}
     <div className='h-full py-10 pb-10 bg-gray-200'>
     <div className='p-5 mx-auto mt-10 text-black bg-white rounded-lg w-96'>
       <h1 className='mb-2 text-3xl font-bold text-center text-black'>Sign Up</h1>
