@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
+import{ useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from "react-router";
 import { BackendUrl } from '../provider/BackendUrl';
 import axios from 'axios'
 import Message from '../components/Message';
+
+
 export default function SendMoney() {
   const [searchParams] = useSearchParams();
-  const id = searchParams.get("id")
   const name = searchParams.get("name")
-  const [amount, setAmmount] = useState(0)
+  const amountRef = useRef(0)
   const [message, setMessage] = useState("")
   const [success, setSuccess] = useState(false)
   const naivgate = useNavigate()
 
   
   const SendMoney =async()=>{
+    const amount = amountRef.current.value;
     const response = await axios.post(`${BackendUrl}/account/send`,{
       username: name,
       amount
@@ -29,7 +31,7 @@ export default function SendMoney() {
       setSuccess(true)
       setTimeout(() => {
         setMessage("")
-        naivgate("/dashboard")
+        naivgate("/")
       }, 2000);
     }else{
       setMessage(result.message)
@@ -47,7 +49,7 @@ export default function SendMoney() {
       </div>
       <div className='flex flex-col gap-1 mt-3'>
         <label htmlFor="">Amoutn (in rs)</label>
-        <input value={amount} onChange={(e)=> setAmmount(e.target.value)}  className='p-1 px-2 mb-5 border-2 border-gray-500 rounded-md ' type="number" placeholder='Enter amount ' />
+        <input ref={amountRef}  className='p-1 px-2 mb-5 border-2 border-gray-500 rounded-md ' type="number" placeholder='Enter amount ' />
       </div>
       <button onClick={SendMoney} className='w-full py-2 text-lg text-white bg-green-500 rounded-lg '>Initiate Transfer</button>
     </div>

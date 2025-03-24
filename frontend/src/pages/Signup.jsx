@@ -3,20 +3,25 @@ import Button from '../components/Button'
 import BottomWarning from '../components/BottomWarning'
 import Message from '../components/Message'
 import {BackendUrl} from "../provider/BackendUrl"
-import { useState } from 'react'
+import { memo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function Signup() {
+ function Signup() {
+
   const [message, setMessage ] = useState("")
   const [success, setSuccess] = useState("")
-  const [username, setUsername] = useState()
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [password, setPassword] = useState("")
+  const usernameRef = useRef()
+  const passwordRef = useState()
+  const firstNameRef = useRef()
+  const lastNameRef = useRef()
   const navigate = useNavigate()
 
   const HandleSignup =async(e)=>{
     e.preventDefault()
+    const username = usernameRef.current.value;
+    const firstName = firstNameRef.current.value;
+    const lastName = lastNameRef.current.value;
+    const password = passwordRef.current.value;
     const response =await fetch(`${BackendUrl}/user/signup`,{
       method :"POST",
       headers: {
@@ -28,10 +33,6 @@ export default function Signup() {
     if(response.ok){
       setMessage(data.message)
       setSuccess(true)
-      setUsername("")
-      setFirstName("")
-      setLastName("")
-      setPassword("")
       setTimeout(() => {
         setMessage("")
         navigate("/signin")
@@ -51,10 +52,10 @@ export default function Signup() {
     <div className='p-5 mx-auto mt-10 text-black bg-white rounded-lg w-96'>
       <h1 className='mb-2 text-3xl font-bold text-center text-black'>Sign Up</h1>
       <p className='mb-5 text-lg text-center text-gray-500'>Enter your information to create an account</p>
-        <Input value={username} onchange={(e)=> setUsername(e.target.value)} label={"Username"} placeholder={"John@12"} type={"text"}/>
-        <Input value={firstName} onchange={(e)=> setFirstName(e.target.value)} label={"First Name"} placeholder={"John"} type={"text"}/>
-        <Input value={lastName} onchange={(e)=> setLastName(e.target.value)} label={"Last Name"} placeholder={"Dep"} type={"text"}/>
-        <Input value={password} onchange={(e)=> setPassword(e.target.value)} label={"Password"} placeholder={"Password"} type={"password"} />
+        <Input ref={usernameRef}  label={"Username"} placeholder={"John@12"} type={"text"}/>
+        <Input ref={firstNameRef}  label={"First Name"} placeholder={"John"} type={"text"}/>
+        <Input ref={lastNameRef}  label={"Last Name"} placeholder={"Dep"} type={"text"}/>
+        <Input ref={passwordRef}  label={"Password"} placeholder={"Password"} type={"password"} />
         <Button onclick={HandleSignup} purpose={"Sign Up"}/>
         <BottomWarning purpose={"sign in"} to={"/signin"}/>
     </div>
@@ -62,3 +63,4 @@ export default function Signup() {
     </>
   )
 }
+export default memo(Signup)

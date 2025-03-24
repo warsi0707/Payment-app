@@ -2,6 +2,7 @@ import  { useEffect, useState } from 'react'
 import { BackendUrl } from '../provider/BackendUrl'
 
 export default function SearchBar() {
+
     const [users, setUsers] = useState([])
     const [filter, setFilter] = useState("")
    

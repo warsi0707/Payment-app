@@ -16,10 +16,10 @@ function App() {
       <BrowserRouter>
       <Navbar/>
         <Routes>
-          <Route path='/dashboard' element={authenticated?<Dashboard/>: <Signin/>}/>
+          <Route path='/' element={authenticated?<Dashboard/>: <Signin/>}/>
           <Route path='/signup' element={<Signup/>}/>
           <Route path='/signin' element={<Signin/>}/>
-          <Route path='/send' element={<SendMoney/>}/>
+          <Route path='/send' element={authenticated?<SendMoney/>:<Signin/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>
       </BrowserRouter>

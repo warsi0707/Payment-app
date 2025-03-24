@@ -1,5 +1,6 @@
+import { memo } from "react"
 
-export default function Balance({balance}) {
+ function Balance({balance}) {
   return (
     <div className='flex flex-col gap-3 my-10 text-lg sm:flex-row'>
         <h1 className='font-bold text-black'>Your Balance</h1>
@@ -7,3 +8,4 @@ export default function Balance({balance}) {
     </div>
   )
 }
+export default memo(Balance)
