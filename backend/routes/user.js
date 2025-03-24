@@ -50,7 +50,12 @@ userRouter.post("/signin", async (req, res) => {
         const findUser = await User.findOne({
             username: username
         })
-        const comparedPass = findUser ?  bcrypt.compare(password, findUser.password) : false
+        if (!findUser) {
+            return res.status(404).json({
+                message: `${username} not found`
+            })
+        }
+        const comparedPass = findUser?await bcrypt.compare(password, findUser.password) : false
         if (comparedPass) {
             const token = jwt.sign({
                 userId: findUser._id
