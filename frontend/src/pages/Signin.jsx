@@ -39,7 +39,7 @@ import AuthContext from '../context/useAuth'
 
   return (
     <>
-     <div className='p-5 mx-auto mt-20 text-black bg-white rounded-lg max-w-96'>
+     <div className='p-5 mx-auto mt-20 mb-10 text-black bg-white rounded-lg max-w-96'>
           <h1 className='mb-2 text-3xl font-bold text-center text-black'>Sign in</h1>
           <p className='mb-5 text-lg text-center text-gray-500'>Enter your information to login</p>
             <Input ref={usernameRef} label={"Username"} placeholder={"John@12"} type={"text"}/>

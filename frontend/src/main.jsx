@@ -10,7 +10,7 @@ createRoot(document.getElementById('root')).render(
   // <StrictMode>
       <UseAuth>
         <Toaster position='top-right'/>
-      <div className='h-screen bg-gray-200'>
+      <div className='h-full py-10 bg-gray-200'>
         <App />
       </div>
       </UseAuth>
