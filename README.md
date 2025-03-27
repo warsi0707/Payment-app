@@ -28,7 +28,7 @@ To set up the Payment-app on your local machine, follow these steps:
 
 3. **Run the Application**:
     ```
-    npm run dev
+    node index.js
     ```
 
 5. **Access the App**:
@@ -56,3 +56,4 @@ To set up the Payment-app on your local machine, follow these steps:
   - Fetch: For making HTTP requests.
   - dotenv: For managing environment variables.
   - bcrypt: For password hashing.
+  - cors: For connect backend and frontend
