@@ -7,7 +7,11 @@ export default function useBalance() {
   const GetBalance =async()=>{
     const response = await fetch(`${BackendUrl}/account/balance`,{
       method: "GET",
-      credentials: 'include'
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+        authorization: localStorage.getItem("token")
+      }
     })
     const result = await response.json()
     if(response.ok){

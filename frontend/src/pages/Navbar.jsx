@@ -1,23 +1,20 @@
 import { Link } from 'react-router-dom'
 import AuthContext from '../context/useAuth'
 import { memo, useCallback, useContext } from 'react'
-import { BackendUrl } from '../provider/BackendUrl'
 import toast from 'react-hot-toast'
 
  function Navbar() {
   const {authenticated, setAuthenticated} = useContext(AuthContext)
-   const Logout =useCallback(async()=>{
-          const response = await fetch(`${BackendUrl}/user/logout`,{
-              method: "POST",
-              credentials: 'include'
-          })
-          if(response.ok){
-              setAuthenticated(false)
-             toast.success("Logout")
-          }else{
-              setAuthenticated(false)
-              toast.error("Logout")
-          }
+   const Logout =useCallback(()=>{
+    const logout = localStorage.removeItem('token')
+    if(logout){
+      setAuthenticated(false)
+         toast.success("Logout")
+    }else{
+      setAuthenticated(false)
+          toast.error("Logout")
+    }
+
       },[])
  
   return (

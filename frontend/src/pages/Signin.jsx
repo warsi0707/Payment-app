@@ -28,6 +28,7 @@ import AuthContext from '../context/useAuth'
         const data = await response.json()
         if(response.ok){
         toast.success(data.message)
+        localStorage.setItem("token", data.token)
           setTimeout(() => {
             setAuthenticated(true)
             navigate("/")

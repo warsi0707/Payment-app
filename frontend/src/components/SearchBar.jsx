@@ -10,7 +10,10 @@ export default function SearchBar() {
         const GetUser =async()=>{
             const response = await fetch(`${BackendUrl}/user/bulk?filter=` + filter,{
                 method: "GET",
-                credentials: 'include'
+                credentials: 'include',
+                headers: {
+                    authorization: localStorage.getItem("token")
+                }
             })
             const result = await response.json()
             if(response.ok){

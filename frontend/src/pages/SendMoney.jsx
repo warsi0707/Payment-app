@@ -18,7 +18,8 @@ export default function SendMoney() {
       amount
     },{
       headers: {
-        'Content-Type': "application/json"
+        'Content-Type': "application/json",
+        Authorization: localStorage.getItem("token")
       },
       withCredentials: true
     })

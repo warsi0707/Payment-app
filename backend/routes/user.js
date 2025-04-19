@@ -60,12 +60,6 @@ userRouter.post("/signin", async (req, res) => {
             const token = jwt.sign({
                 userId: findUser._id
             }, process.env.USER_JWT_SECRET)
-            res.cookie("token", token, {
-                httpOnly: true,
-                maxAge: 7 * 24 * 60 * 60 * 1000,
-                sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
-                secure: process.env.NODE_ENV === "Development" ? false : true,
-            })
             return res.json({
                 message: "Signin success",
                 token: token
@@ -156,23 +150,7 @@ userRouter.get("/bulk", Auth, async (req, res) => {
     }
 
 })
-userRouter.post("/logout", Auth,(req, res)=>{
 
-    try{
-        res.clearCookie("token", {
-            sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
-            secure: process.env.NODE_ENV === "Development" ? false : true,
-        })
-        return res.json({
-            message: "Logout success"
-        })
-
-    }catch(error){
-        res.status(404).json({
-            message: "Error while logout"
-        })
-    }
-})
 module.exports = {
     userRouter
 }

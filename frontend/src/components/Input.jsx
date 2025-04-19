@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export default function Input({label,placeholder,type, ref}) {
+ function Input({label,placeholder,type, ref}) {
   return (
      <div className='flex flex-col gap-2 my-2 mb-3'>
       <label className='text-lg font-semibold text-black md:text-xl'>{label}</label>
@@ -8,3 +8,4 @@ export default function Input({label,placeholder,type, ref}) {
     </div>
   ) 
 }
+export default memo(Input)

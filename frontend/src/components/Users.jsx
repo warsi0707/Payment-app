@@ -12,6 +12,10 @@ export default function Users() {
       const response = await fetch(`${BackendUrl}/user/bulk?filter=` + filter, {
         method: "GET",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: localStorage.getItem("token")
+        }
       });
       const result = await response.json();
       if (response.ok) {

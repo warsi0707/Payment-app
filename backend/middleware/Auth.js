@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken")
 
 function Auth(req, res, next){
-    const token = req.cookies.token
+    const token = req.headers["authorization"]
     if(!token){
         return res.status(404).json({
             message: "Login required",

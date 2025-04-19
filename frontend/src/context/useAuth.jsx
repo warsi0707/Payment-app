@@ -7,7 +7,10 @@ export function UseAuth({children}) {
     const GetUser =async()=>{
         const response = await fetch(`${BackendUrl}/user/auth`,{
             method :"GET",
-            credentials: 'include'
+            credentials: 'include',
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
         })
         const result = await response.json()
         if(result.authenticated === true){
